@@ -2,13 +2,21 @@
 https://www.freecodecamp.com/challenges/use-the-twitchtv-json-api
 
 Created by:   Jason M. Goebel
+
 Email:        goebel.jason@gmail.com
+
 website:      www.jasongoebel.com
+
 LinkedIn:     https://www.linkedin.com/
+
 github:       https://github.com/JMGoebel
+
 codepen:      http://codepen.io/JGoebel03/
+
 hackerrank:   https://www.hackerrank.com/goebel_jason
+
 FreeCodeCamp: https://www.freecodecamp.com/jmgoebel
+
 
 
 
@@ -24,6 +32,8 @@ FreeCodeCamp: https://www.freecodecamp.com/jmgoebel
 
 4. [ ] User will see a placeholder notification if a streamer has closed their Twitch account (or the account never existed). 
     You can verify this works by adding brunofin and comster404 to your array of Twitch streamers.
+
+
 
 
 #### --twitch.tv API--
