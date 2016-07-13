@@ -1,27 +1,27 @@
-# My rendition of the "Use the Twitchtv JSON API" project from freeCodeCamp.com
+### My rendition of the "Use the Twitchtv JSON API" project from freeCodeCamp.com
 https://www.freecodecamp.com/challenges/use-the-twitchtv-json-api
 
-## Created by:   Jason M. Goebel
+Created by:   Jason M. Goebel
 
-## Email:        goebel.jason@gmail.com
+Email:        goebel.jason@gmail.com
 
-## website:      jasongoebel.com
+website:      jasongoebel.com
 
-## LinkedIn:     https://www.linkedin.com/
+LinkedIn:     https://www.linkedin.com/
 
-## github:       https://github.com/JMGoebel
+github:       https://github.com/JMGoebel
 
-## codepen:      http://codepen.io/JGoebel03/
+codepen:      http://codepen.io/JGoebel03/
 
-## hackerrank:   https://www.hackerrank.com/goebel_jason
+hackerrank:   https://www.hackerrank.com/goebel_jason
 
-## FreeCodeCamp: https://www.freecodecamp.com/jmgoebel
+FreeCodeCamp: https://www.freecodecamp.com/jmgoebel
 
 
 
-## Show the Local Weather
+### Show the Local Weather
 
-### Objective:  Build a CodePen.io app that is functionally similar to this: https://codepen.io/FreeCodeCamp/full/Myvqmo/
+#### Objective:  Build a CodePen.io app that is functionally similar to this: https://codepen.io/FreeCodeCamp/full/Myvqmo/
 
 1. [ ] User can see whether Free Code Camp is currently streaming on Twitch.tv.
 
@@ -32,13 +32,14 @@ https://www.freecodecamp.com/challenges/use-the-twitchtv-json-api
 4. [ ] User will see a placeholder notification if a streamer has closed their Twitch account (or the account never existed). 
     You can verify this works by adding brunofin and comster404 to your array of Twitch streamers.
 
-### --twitch.tv API--
-#### To pull local weather data
 
-### --Illustrator--
-#### For svn icons
+#### --twitch.tv API--
+To pull local weather data
 
-### --Special Thanks--
-#### freeCodeCamp.com for guidence
+#### --Illustrator--
+For svn icons
+
+#### --Special Thanks--
+freeCodeCamp.com for guidence
 
 
