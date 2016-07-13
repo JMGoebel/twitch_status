@@ -2,19 +2,12 @@
 https://www.freecodecamp.com/challenges/use-the-twitchtv-json-api
 
 Created by:   Jason M. Goebel
-
 Email:        goebel.jason@gmail.com
-
 website:      www.jasongoebel.com
-
 LinkedIn:     https://www.linkedin.com/
-
 github:       https://github.com/JMGoebel
-
 codepen:      http://codepen.io/JGoebel03/
-
 hackerrank:   https://www.hackerrank.com/goebel_jason
-
 FreeCodeCamp: https://www.freecodecamp.com/jmgoebel
 
 
