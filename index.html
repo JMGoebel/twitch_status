@@ -6,9 +6,27 @@
     <link rel="stylesheet" type="text/css" href="style.css">
   </head>
   <body>
-    <div id="display"></div>
+    <header>
+      <div id="icon">Twitch<br>Channel<br>Status</div>
+      <div id="control_panel">
+          <ul>
+            <li>ALL</li>
+            <li>ONLINE</li>
+            <li>OFFLINE</li>
+          </ul>
+          <input type="search" name="search" placeholder="search for user...">
+      </div>
+    </header>
+    <div id="container">
+      <div id="data">
+      </div>
+    </div>
+    <footer>
+      <div>
+        This is a <a href="https://www.freecodecamp.com/challenges/use-the-twitchtv-json-api" target=_blank>freecodecamp.com</a> project created by <a href="http://www.freecodecamp.com/jmgoebel" target="_blank">Jason Goebel.</a>
+      </div>
+    </footer>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-    <script src="svgPipeline.js"></script>
     <script src="script.js"></script>
   </body>
 </html>

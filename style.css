@@ -1,0 +1,102 @@
+/*
+  color: #cf6766;
+  color: #30415d;
+  color: #031424;
+  color: #8eaebd;
+*/
+
+* {
+  margin: 0;
+  padding: 0;
+  color: #8eaebd;
+}
+
+a {
+  color: #cf6766;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #aa4555;
+}
+
+header {
+  position: fixed;
+  height: 100px;
+  width: 100%;
+  background-color: #031427;
+  box-shadow: 0px 0px 10px 4px black;
+}
+
+#icon {
+  text-align: center;
+  font-weight: 700;
+  position: absolute;
+  top: 50%;
+  left: 10px;
+  transform: translateY(-50%);
+  padding: 10px;
+  background-color: black;
+  border-radius: 10px;
+  border: 3px solid #8eaebd;
+}
+
+#control_panel {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -90%);
+}
+
+#control_panel li{
+  display: inline-block;
+  padding: 10px 0;
+  width: 80px;
+  text-align: center;
+  list-style: none;
+  cursor: pointer;
+  background-color: #30415d;
+}
+
+.active {
+  background-color: #cf6766 !important;
+  box-shadow:  inset 2px 2px 2px 1px rgba(0,0,0,0.75);
+}
+
+#control_panel input{
+  width: 200px;
+  position: absolute;
+  margin-top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+#container {
+  background-color: #30415d;
+  background-image: url(http://res.cloudinary.com/jgoebel/image/upload/v1470880311/big_strips.png);
+  width: 100%;
+  height: 100%;
+}
+
+#data {
+  position: absolute;
+  width: 100%;
+  top: 100px;
+}
+
+footer {
+  position: fixed;
+  bottom: 0;
+  height: 40px;
+  width: 100%;
+  font-size: 11px;
+  background-color: #031424;
+  box-shadow: 0px -1px 10px 4px black;
+}
+
+footer div {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
