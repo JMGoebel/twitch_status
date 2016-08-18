@@ -2,48 +2,35 @@
 
 function displayData(data) {
   'use strict';
-  $("#display").text(data.follows);
-
+  $("#display").text(data);
+  console.log(data);
 }
 
-function addStream(followerData) {
+function addStream(channels) {
   'use strict';
 
   var pullStreams = 'https://api.twitch.tv/kraken/streams/',
-    client_id = 'fnp03zxl6kktdbte1vp01h5wk4y65aj';
+    client_id = 'fnp03zxl6kktdbte1vp01h5wk4y65aj',
+    channelData = {};
 
-  followerData.follows.forEach(function (user, index) {
-    var userName = user.channel.display_name;
-
-    $.getJSON(pullStreams + userName, {
+  channels.forEach(function (user, index) {
+    $.getJSON(pullStreams + user, {
       client_id: client_id
     })
       .fail(function (data) {
-        console.error("Retrieval from twitch has failed.", data);
+        if (data.status === 422) {
+          console.error("User no longer exist.", data);
+          $("#error_container").append("<div class='error'> <div class='error_close'>X</div> ATTENTION: " + data.responseJSON.message + "</div>");
+        } else {
+          console.error("Retrieval from twitch has failed.", data);
+        }
       })
       .done(function (data) {
-        followerData.follows[index].stream = data.stream;
+        channelData[index] = data;
       });
   });
 
-  displayData(followerData);
-}
-
-function gatherChannels(userName) {
-  'use strict';
-
-  var twitchAPI = 'https://api.twitch.tv/kraken/users/' + userName + '/follows/channels',
-    client_id = 'fnp03zxl6kktdbte1vp01h5wk4y65aj';
-
-  $.getJSON(twitchAPI, {
-    client_id: client_id
-  })
-    .fail(function (data) {
-      console.error("Retrieval from twitch has failed.", data);
-    })
-    .done(function (data) {
-      addStream(data);
-    });
+  displayData(channelData);
 }
 
 $(document).ready(function () {
@@ -51,11 +38,17 @@ $(document).ready(function () {
 
   $('li:first-child()').addClass('active');
 
-  gatherChannels("jmgoebel03");
+  var channels = ["ESL_SC2", "OgamingSC2", "cretetion", "freecodecamp", "storbeck", "habathcx", "RobotCaleb", "noobs2ninjas", "brunofin", "comster404"];
+
+  addStream(channels);
 
   $('li').click(function () {
     $('li').removeClass('active');
     $(this).addClass('active');
+  });
+
+  $('#error_container').on('click', '.error_close', function () {
+    $(this).parent().fadeOut();
   });
 
 

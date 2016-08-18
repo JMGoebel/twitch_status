@@ -84,6 +84,40 @@ header {
   top: 100px;
 }
 
+#error_container {
+  margin-top: 5px;
+  width: 100%;
+  position: absolute;
+}
+
+.error {
+  width: 100%;
+  background-color: firebrick;
+  box-sizing: border-box;
+  padding-left: 10px;
+  border: 1px solid black;
+  color: white;
+}
+
+.error_close {
+  box-sizing: border-box;
+  border: 1px solid black;
+  position: relative;
+  left: -3px;
+  display: inline-block;
+  width: 15px;
+  height: 15px;
+  background-color: red;
+  cursor: pointer;
+  color: black;
+  padding-left: 2px;
+  font-size: 13px;
+}
+
+.error_close:hover {
+  background-color: darkred;
+}
+
 footer {
   position: fixed;
   bottom: 0;
