@@ -26,6 +26,7 @@ header {
   width: 100%;
   background-color: #031427;
   box-shadow: 0px 0px 10px 4px black;
+  z-index: 10;
 }
 
 #icon {
@@ -71,11 +72,11 @@ header {
   transform: translateX(-50%);
 }
 
-#container {
+body {
   background-color: #30415d;
   background-image: url(http://res.cloudinary.com/jgoebel/image/upload/v1470880311/big_strips.png);
   width: 100%;
-  height: 100%;
+  height: auto;
 }
 
 #data {
@@ -100,6 +101,7 @@ header {
 }
 
 .error_close {
+  top: -1px;
   box-sizing: border-box;
   border: 1px solid black;
   position: relative;
@@ -116,6 +118,26 @@ header {
 
 .error_close:hover {
   background-color: darkred;
+}
+
+.cards {
+  width: 30%;
+  min-width: 200px;
+  height: 150px;
+  margin: 10px;
+  display: inline-block;
+  background-color: #031427;
+  box-shadow: 1px 1px 5px black;
+}
+
+#logo {
+  margin-top: 10px;
+  margin-left: 10px;
+  height: 75px;
+  width: 75px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
 }
 
 footer {

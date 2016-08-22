@@ -1,47 +1,106 @@
 /*global $, console */
 
-function displayData(data) {
+function buildCard(data) {
   'use strict';
-  $("#display").text(data);
-  console.log(data);
+
+   console.log(data);
+  var html = '';
+
+  html += "<div class='cards'>";
+  html +=   "<div id='logo' style='background-image: url(" + data.logo + ")'>";
+  html += "";
+  html += "";
+  html += "";
+  html += "";
+  html += "";
+  html +=   "</div>";
+  html += "</div>";
+
+
+ /*   name: data.display_name,
+    followers: data.followers,
+    game: data.game,
+    logo: data.logo,
+    status: data.status,
+    url: data.url,
+  */
+
+  return html;
 }
 
-function addStream(channels) {
+function query(channels) {
   'use strict';
 
-  var pullStreams = 'https://api.twitch.tv/kraken/streams/',
+  var channelData = [],
+    pullChannel = 'https://api.twitch.tv/kraken/channels/',
+    pullStream = 'https://api.twitch.tv/kraken/streams/',
     client_id = 'fnp03zxl6kktdbte1vp01h5wk4y65aj',
-    channelData = {};
+    competed = 0;
 
-  channels.forEach(function (user, index) {
-    $.getJSON(pullStreams + user, {
+  channels.forEach(function (user) {
+
+    $.getJSON(pullChannel + user, {
       client_id: client_id
     })
       .fail(function (data) {
         if (data.status === 422) {
-          console.error("User no longer exist.", data);
-          $("#error_container").append("<div class='error'> <div class='error_close'>X</div> ATTENTION: " + data.responseJSON.message + "</div>");
+          $("#error_container").append("<div class='error'> <div class='error_close'>X</div> ATTENTION: " + data.responseJSON.message + " or no longer exist.</div>");
         } else {
-          console.error("Retrieval from twitch has failed.", data);
+          $("#error_container").append("<div class='error'> <div class='error_close'>X</div> ATTENTION: Retrieval error occurred.</div>");
         }
       })
       .done(function (data) {
-        channelData[index] = data;
+
+        // add stream data
+        $.getJSON(pullStream + user, {
+          client_id: client_id
+        })
+          .fail(function (data) {
+
+          })
+          .done(function (data){
+
+          });
+        $("#data").append(buildCard(data));
       });
   });
 
-  displayData(channelData);
+}
+
+
+
+
+
+
+
+function initialize() {
+  'use strict';
+
+  $('li:first-child()').addClass('active');
 }
 
 $(document).ready(function () {
   'use strict';
 
-  $('li:first-child()').addClass('active');
+  var channels = ["ESL_SC2",
+                  "OgamingSC2",
+                  "cretetion",
+                  "freecodecamp",
+                  "storbeck",
+                  "habathcx",
+                  "RobotCaleb",
+                  "noobs2ninjas",
+                  "brunofin",
+                  "comster404"],
+    channelData = {};
 
-  var channels = ["ESL_SC2", "OgamingSC2", "cretetion", "freecodecamp", "storbeck", "habathcx", "RobotCaleb", "noobs2ninjas", "brunofin", "comster404"];
+  // Initialize
+  initialize();
 
-  addStream(channels);
+  // Build Channels
+  query(channels);
 
+  // Page interaction
   $('li').click(function () {
     $('li').removeClass('active');
     $(this).addClass('active');
@@ -50,9 +109,11 @@ $(document).ready(function () {
   $('#error_container').on('click', '.error_close', function () {
     $(this).parent().fadeOut();
   });
-
-
 });
 
 // cid: fnp03zxl6kktdbte1vp01h5wk4y65aj
-
+/*var pullChannel = 'https://api.twitch.tv/kraken/channels/',
+    pullStream = 'https://api.twitch.tv/kraken/streams/',
+    client_id = 'fnp03zxl6kktdbte1vp01h5wk4y65aj',
+    channelData = {},
+    itemsProcessed = 0;*/
