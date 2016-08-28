@@ -1,43 +1,68 @@
 /*global $, console */
 
-function buildCard(data) {
+function buildCard(data, action) {
   'use strict';
 
-   console.log(data);
-  var html = '';
+  var html = '',
+      status;
 
-  html += "<div class='cards'>";
-  html +=   "<div id='logo' style='background-image: url(" + data.logo + ")'>";
-  html += "";
-  html += "";
-  html += "";
-  html += "";
-  html += "";
-  html +=   "</div>";
-  html += "</div>";
+  if (data.stream === null) {
+    status = "Offline";
+  } else {
+    status = "Online";
+  }
 
+  if (action === 0) {
+    html += "<div class='cards'>";
+    html +=   "<div class='logo' style='background-image: url(" + data.logo + ")'>";
+    html +=   "</div>";
+    html +=   "<div class='information'>";
+    html +=     "Name: <em>" + data.display_name + "</em><br>";
+    html +=     "Game: <em>" + data.game + "</em><br>";
+    html +=     "Followers: <em>" + data.followers + "</em><br>";
+    html +=     "url: <em><a href='" + data.url + "'>" + data.url + "</a></em><br>";
+    html +=     "Status: <em>" + status + "</em>";
+    html += "</div>";
 
- /*   name: data.display_name,
-    followers: data.followers,
-    game: data.game,
-    logo: data.logo,
-    status: data.status,
-    url: data.url,
-  */
+    return html;
+  } else if (action === 1 && status === "Online") {
+    html += "<div class='cards'>";
+    html +=   "<div class='logo' style='background-image: url(" + data.logo + ")'>";
+    html +=   "</div>";
+    html +=   "<div class='information'>";
+    html +=     "Name: <em>" + data.display_name + "</em><br>";
+    html +=     "Game: <em>" + data.game + "</em><br>";
+    html +=     "Followers: <em>" + data.followers + "</em><br>";
+    html +=     "url: <em><a href='" + data.url + "'>" + data.url + "</a></em><br>";
+    html +=     "Status: <em>" + status + "</em>";
+    html += "</div>";
 
-  return html;
+    return html;
+  } else if (action === 2 && status === "Offline") {
+    html += "<div class='cards'>";
+    html +=   "<div class='logo' style='background-image: url(" + data.logo + ")'>";
+    html +=   "</div>";
+    html +=   "<div class='information'>";
+    html +=     "Name: <em>" + data.display_name + "</em><br>";
+    html +=     "Game: <em>" + data.game + "</em><br>";
+    html +=     "Followers: <em>" + data.followers + "</em><br>";
+    html +=     "url: <em><a href='" + data.url + "'>" + data.url + "</a></em><br>";
+    html +=     "Status: <em>" + status + "</em>";
+    html += "</div>";
+
+    return html;
+  }
 }
 
-function query(channels) {
-  'use strict';
-
+function query (channel_list, action) {
   var channelData = [],
     pullChannel = 'https://api.twitch.tv/kraken/channels/',
     pullStream = 'https://api.twitch.tv/kraken/streams/',
-    client_id = 'fnp03zxl6kktdbte1vp01h5wk4y65aj',
-    competed = 0;
+    client_id = 'fnp03zxl6kktdbte1vp01h5wk4y65aj';
 
-  channels.forEach(function (user) {
+
+  // Build ChannelData
+  channel_list.forEach(function (user) {
 
     $.getJSON(pullChannel + user, {
       client_id: client_id
@@ -51,33 +76,23 @@ function query(channels) {
       })
       .done(function (data) {
 
-        // add stream data
-        $.getJSON(pullStream + user, {
+
+        channelData[user] = data;
+
+        // check for stream
+         $.getJSON(pullStream + user, {
           client_id: client_id
-        })
-          .fail(function (data) {
-
           })
-          .done(function (data){
+            .done(function (data) {
 
-          });
-        $("#data").append(buildCard(data));
-      });
+              channelData[user].stream = data.stream;
+               $("#data").append(buildCard(channelData[user], action));
+            });
+    });
   });
 
 }
 
-
-
-
-
-
-
-function initialize() {
-  'use strict';
-
-  $('li:first-child()').addClass('active');
-}
 
 $(document).ready(function () {
   'use strict';
@@ -91,14 +106,12 @@ $(document).ready(function () {
                   "RobotCaleb",
                   "noobs2ninjas",
                   "brunofin",
-                  "comster404"],
-    channelData = {};
+                  "comster404"];
+
 
   // Initialize
-  initialize();
-
-  // Build Channels
-  query(channels);
+  $('li:first-child()').addClass('active');
+  query(channels, 0);
 
   // Page interaction
   $('li').click(function () {
@@ -106,14 +119,23 @@ $(document).ready(function () {
     $(this).addClass('active');
   });
 
+  $('#query_all').click(function () {
+    $('#data').empty();
+    query(channels, 0);
+  });
+
+  $('#query_online').click(function () {
+    $('#data').empty();
+    query(channels, 1);
+  });
+
+  $('#query_offline').click(function () {
+    $('#data').empty();
+    query(channels, 2);
+  });
+
   $('#error_container').on('click', '.error_close', function () {
     $(this).parent().fadeOut();
   });
-});
 
-// cid: fnp03zxl6kktdbte1vp01h5wk4y65aj
-/*var pullChannel = 'https://api.twitch.tv/kraken/channels/',
-    pullStream = 'https://api.twitch.tv/kraken/streams/',
-    client_id = 'fnp03zxl6kktdbte1vp01h5wk4y65aj',
-    channelData = {},
-    itemsProcessed = 0;*/
+});
